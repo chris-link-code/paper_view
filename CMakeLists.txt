@@ -34,7 +34,7 @@ endif ()
 #set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
 
 # 指定启动代码
-set(SOURCE_FILE src/main.c)
+set(SOURCE_FILE main.c)
 #set(SOURCE_FILE src/basic_setup.c)
 
 message("")
@@ -81,4 +81,5 @@ target_link_libraries(
 # 隐藏控制台
 set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -mwindows)
 
+message("")
 # ------- End ----------- #
