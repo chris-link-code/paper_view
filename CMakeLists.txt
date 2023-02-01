@@ -15,6 +15,17 @@ message(STATUS "project_name: " ${PROJECT_NAME})
 
 set(CMAKE_C_STANDARD 17)
 
+# https://blog.csdn.net/GeiGe123/article/details/113677930
+# 设置编译模式，debug/release
+#set(CMAKE_BUILD_TYPE "Debug")
+# debug/release的编译选项
+#set(CMAKE_C_FLAGS_DEBUG "$ENV{CFLAGS} -O0 -Wall -g -ggdb")
+#set(CMAKE_C_FLAGS_RELEASE "$ENV{CFLAGS} -O3 -Wall -Wextra -Wpedantic")
+# 也可以直接设置编译选项
+set(CMAKE_C_FLAGS "-lSDL2 -lX11")
+
+# 隐藏控制台
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mwindows")
 
 # OS
 message("")
@@ -67,6 +78,18 @@ ELSE ()
     message(FATAL_ERROR "SDL2 NOT FOUND")
 ENDIF ()
 
+# finding X11
+#[[find_package(X11 REQUIRED)
+message("")
+message(STATUS "finding X11")
+IF (${X11_FOUND})
+    message(STATUS "X11_found: " ${X11_FOUND})
+    message(STATUS "X11_include_dir: " ${X11_INCLUDE_DIR})
+    message(STATUS "X11_libraries: " ${X11_LIBRARIES})
+ELSE ()
+    message(FATAL_ERROR "X11 NOT FOUND")
+ENDIF ()]]
+
 # ------- End Finds ------ #
 
 # ------- Inc & Link ---- #
@@ -78,8 +101,6 @@ target_link_libraries(
         SDL2::SDL2main
 )
 
-# 隐藏控制台
-set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -mwindows)
 
 message("")
 # ------- End ----------- #
